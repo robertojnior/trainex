@@ -10,6 +10,10 @@ use Mix.Config
 config :trainex,
   ecto_repos: [Trainex.Repo]
 
+config :trainex, Trainex.Repo,
+  migration_primary_key: [type: :binary_id],
+  migration_foreign_key: [type: :binary_id]
+
 # Configures the endpoint
 config :trainex, TrainexWeb.Endpoint,
   url: [host: "localhost"],
