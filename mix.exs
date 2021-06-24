@@ -45,7 +45,8 @@ defmodule Trainex.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
       {:absinthe, "~> 1.5.0"},
-      {:absinthe_plug, "~> 1.5"}
+      {:absinthe_plug, "~> 1.5"},
+      {:crudry, "~> 2.4.0"}
     ]
   end
 

@@ -1,6 +1,7 @@
 defmodule TrainexWeb.Schema.Types.Root do
   use Absinthe.Schema.Notation
 
+  alias Crudry.Middlewares.TranslateErrors
   alias TrainexWeb.Resolvers.Users, as: UsersResolver
 
   import_types TrainexWeb.Schema.Types.User
@@ -18,6 +19,7 @@ defmodule TrainexWeb.Schema.Types.Root do
       arg :params, non_null(:user_params)
 
       resolve &UsersResolver.create/2
+      middleware TranslateErrors
     end
   end
 end
