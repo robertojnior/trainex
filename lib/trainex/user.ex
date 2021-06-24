@@ -3,6 +3,8 @@ defmodule Trainex.User do
 
   import Ecto.Changeset
 
+  alias Trainex.Training
+
   @primary_key {:id, :binary_id, autogenerate: true}
 
   @fields [:email, :name, :password]
@@ -10,6 +12,8 @@ defmodule Trainex.User do
   @email_regex ~r/\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
 
   schema "users" do
+    has_one :training, Training
+
     field :email, :string
     field :name, :string
     field :password, :string
