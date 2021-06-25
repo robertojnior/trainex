@@ -12,7 +12,7 @@ defmodule Trainex.User do
   @email_regex ~r/\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
 
   schema "users" do
-    has_one :training, Training
+    has_many :trainings, Training
 
     field :email, :string
     field :name, :string

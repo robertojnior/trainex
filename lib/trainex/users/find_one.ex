@@ -1,6 +1,8 @@
 defmodule Trainex.Users.FindOne do
+  import Ecto.Query
+
   alias Ecto.UUID
-  alias Trainex.{Repo, User}
+  alias Trainex.{Repo, Training, User}
 
   def call(id) do
     case UUID.cast(id) do
@@ -15,7 +17,17 @@ defmodule Trainex.Users.FindOne do
         {:error, :not_found}
 
       user ->
-        {:ok, user}
+        {:ok, preload_training(user)}
     end
+  end
+
+  defp preload_training(user) do
+    today = Date.utc_today()
+
+    query =
+      from trainings in Training,
+        where: ^today >= trainings.start_date and ^today <= trainings.end_date
+
+    Repo.preload(user, trainings: {first(query, :inserted_at), :exercises})
   end
 end
